@@ -1,3 +1,82 @@
+## git
+
+### config 
+
+命令行设置
+
+```sh
+git config http.proxy  # 查看
+git config --list  # 查看所有
+git config --global http.proxy http://127.0.0.1:7890  # 设置
+```
+
+或者编辑`~/.gitconfig`
+
+```
+[core]
+	editor = vim
+[user]
+	name = 
+	email = 
+[alias]
+    l = log --all --decorate --oneline --graph
+    ll = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(white)<%ad>%Creset' --abbrev-commit
+    st = status
+    cim = commit -m
+    amend = commit --amend
+    br = branch
+    co = checkout
+    c = commit
+[http]
+	proxy = http://127.0.0.1:7890
+[https]
+	proxy = http://127.0.0.1:7890
+```
+
+### tags
+
+```
+git push origin v1.5
+git push origin --tags
+```
+
+### diff
+
+```
+@@ -37,3 +37,4 	@@
+
+\-         +Enjoy it!
+```
+
+* `-`表示变动前的版本
+* `37`表示第37行
+* `3`表示连续3行
+* `\-`表示删去
+
+### 查看 git show
+
+```sh
+git show <commit_id>
+```
+
+### 删除 git rm/clean
+
+```sh
+git rm --cached <file>  # 移除追踪，不删除
+git rm <file>  # 删除文件并git add
+
+git clean -f  # 删除untracked files
+```
+
+### 改变本地repo版本 git reset
+
+```sh
+# 首先将本地的commit恢复到<commit_id>
+git reset <commit_id> <file>  # 将<commit_id>以后的改动放到work区
+git reset --soft <commit_id> <file> # 将<commit_id>以后的改动放到add区
+git reset --hard <commit_id>  # 将<commit_id>以后的改动移除
+```
+
 ## Sublime
 
 打开链接：选中链接，右键在浏览器中打开
