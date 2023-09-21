@@ -162,3 +162,82 @@ git reset --hard <commit_id>  # 将<commit_id>以后的改动移除
 > [setup](https://web.stanford.edu/dept/cs_edu/qt-creator/qt-creator-mac.shtml)
 
 > [configure](https://web.stanford.edu/dept/cs_edu/qt-creator/qt-creator-recommended-settings.shtml)
+
+## 原生js和jQuery
+
+方便起见，在表示上，通常用`$()`代替`jQuery()`，通常将jQuery对象命名为`$page`
+
+```js
+const page = document.getElementById('page');
+const $page = $(page);    // 将原生js的DOM对象转换为jQuery对象
+```
+
+### 选择元素
+
+```js
+const page = document.getElementById('page');
+const articles = page.querySelectorAll('.article')
+const article = page.querySelector('.article')  // get first
+
+// jQuery
+const $page = $('#page');
+const $articles = $page.find('.article');
+const $article = $page.find('.article:first');
+```
+
+### 创建并挂载元素
+
+```js
+const articles = page.querySelector('.container')
+const article = document.createElement('p')
+article.textContent = '...'
+article.classList.add('article')
+articles.appendChild(article)
+
+// jQuery
+const articles = $('.container');
+const article = $('<p>').text('...');
+article.addClass('article');
+articles.append(article);
+```
+
+### 查看元素
+
+```js
+const id = article.getAttribute('id')
+article.setAttribute('id', 100)
+article.id = 100
+
+// jQuery
+const id = $(article).attr('id');
+$(article).attr('id', 100);
+```
+
+### 添加eventListener
+
+```js
+links.forEach((link) => {
+  link.addEventListener('click', (event) => {
+  })
+})
+
+// jQuery
+$(links).each(function(){
+  $(this).on('click', function(event){
+  });
+});
+```
+
+### index.html使用footer.html
+
+```js
+const footer = document.getElementById('footer');
+fetch('footer.html')
+  .then(response => response.text())
+  .then(text => {
+    footer.innerHTML = text
+  })
+
+// jQuery
+$("#footer").load("footer.html");
+```
