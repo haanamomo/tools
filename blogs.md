@@ -1,6 +1,6 @@
-## git
+# git
 
-### config 
+## config 
 
 命令行设置
 
@@ -33,14 +33,14 @@ git config --global http.proxy http://127.0.0.1:7890  # 设置
 	proxy = http://127.0.0.1:7890
 ```
 
-### tags
+## tags
 
 ```
 git push origin v1.5
 git push origin --tags
 ```
 
-### diff
+## diff
 
 ```
 @@ -37,3 +37,4 	@@
@@ -53,13 +53,13 @@ git push origin --tags
 * `3`表示连续3行
 * `\-`表示删去
 
-### 查看 git show
+## 查看 git show
 
 ```sh
 git show <commit_id>
 ```
 
-### 删除 git rm/clean
+## 删除 git rm/clean
 
 ```sh
 git rm --cached <file>  # 移除追踪，不删除
@@ -68,7 +68,7 @@ git rm <file>  # 删除文件并git add
 git clean -f  # 删除untracked files
 ```
 
-### 改变本地repo版本 git reset
+## 改变本地repo版本 git reset
 
 ```sh
 # 首先将本地的commit恢复到<commit_id>
@@ -77,7 +77,7 @@ git reset --soft <commit_id> <file> # 将<commit_id>以后的改动放到add区
 git reset --hard <commit_id>  # 将<commit_id>以后的改动移除
 ```
 
-## Sublime
+# Sublime
 
 打开链接：选中链接，右键在浏览器中打开
 
@@ -96,7 +96,7 @@ git reset --hard <commit_id>  # 将<commit_id>以后的改动移除
 显示函数列表或Markdown目录：`meta + r`
 
 
-###  Settings
+##  Settings
 
 
 ```json
@@ -113,7 +113,7 @@ git reset --hard <commit_id>  # 将<commit_id>以后的改动移除
 ```
 
 
-###  插件
+##  插件
 
 1.  安装Package Control
 	Open the command palette
@@ -134,7 +134,7 @@ git reset --hard <commit_id>  # 将<commit_id>以后的改动移除
 	}
     ```
 
-### 分屏幕
+## 分屏幕
 
 分成1列/2列/3列/4列/网格：`cmd+option+1/2/3/4/5` 
 
@@ -142,10 +142,23 @@ git reset --hard <commit_id>  # 将<commit_id>以后的改动移除
 
 将当前文件移动到第1/2/3/4列：`shift+control+1/2/3/4` 
 
-### 在侧栏显示当前文件
+## 在侧栏显示当前文件
 
 需要在Keybinding里定义
 
 ```
 { "keys": ["ctrl+r"], "command": "reveal_in_side_bar" }
 ```
+
+# vscode
+
+# qt
+
+使用国内镜像下载
+
+> http://c.biancheng.net/view/3851.html
+> [中科大](http://mirrors.ustc.edu.cn/qtproject/)
+
+> [setup](https://web.stanford.edu/dept/cs_edu/qt-creator/qt-creator-mac.shtml)
+
+> [configure](https://web.stanford.edu/dept/cs_edu/qt-creator/qt-creator-recommended-settings.shtml)
