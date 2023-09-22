@@ -47,10 +47,41 @@
             .then(response => response.text())
             .then(blogs => {
                 const blogHtml = blogs.split(/^\## /gm).map(blog => {
-                    console.log(blog)
-                    if (blog.trim()) {
-                        const content = marked.parse('## ' + blog);
-                        return `<article>${content}</article>`;
+                    blog = blog.trim()
+                    if (blog) {
+
+
+                        function createToc(mdText) {
+                            const stack = [document.createElement('ul')];
+                            for (const heading of marked.lexer(mdText).filter(x => x.type === 'heading' && x.depth === 3)) {
+                                console.log(heading.depth)
+                                if (heading.depth < stack.length) {
+                                    stack.length = heading.depth;
+                                } else {
+                                    while (heading.depth > stack.length) {
+                                        const ul = document.createElement('ul');
+                                        stack.at(-1).append(ul);
+                                        stack.push(ul);
+                                    }
+                                }
+
+                                const prefix = marked.getDefaults().headerPrefix || '';
+                                const anchor = prefix + heading.text.replaceAll('.', '').replaceAll(' ', '-');
+                                stack.at(-1).insertAdjacentHTML('beforeend', `<li><a href="#${anchor}">${heading.text}</a></li>`);
+                            }
+                            return stack[0];
+                        }
+
+                        const renderer = {
+                            heading(text, level) {
+                                const escapedText = text.replace(/[^\w\\u4e00-\\u9fa5]]+/g, '-');
+                                return `<h${level} id="${escapedText}">${text}</h${level}>\n`;;
+                            }
+                        };
+
+                        marked.use({ renderer });
+                        const content = marked.parse(blog.replace(/^.*$/m, ''));
+                        return `<article><h2>${blog.match(/^.*$/m)}</h2>${createToc(blog).innerHTML}<br>${content}</article>`;
                     }
                 }).join('');
 
